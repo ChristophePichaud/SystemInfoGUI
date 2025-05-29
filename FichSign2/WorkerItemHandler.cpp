@@ -338,9 +338,14 @@ bool WorkerItemHandler::GetNetworkAdapterInformation()
 	while (mc.MoveNext())
 	{
 		CNetworkCard card;
+		card.m_Index = mc.GetIntProperty(_TEXT("Index"));
 		card.m_Name = mc.GetStringProperty(_TEXT("Name"));
+		card.m_AdapterType = mc.GetStringProperty(_TEXT("AdapterType"));
 		card.m_MACAddress = mc.GetStringProperty(_TEXT("MACAddress"));
 		card.m_Speed = mc.GetStringProperty(_TEXT("Speed"));
+		card.m_NetConnectionStatus = mc.GetIntProperty(_TEXT("NetConnectionStatus"));
+		card.m_NetEnabled = mc.GetBoolProperty(_TEXT("NetEnabled"));
+		card.m_PhysicalAdapter = mc.GetBoolProperty(_TEXT("PhysicalAdapter"));
 		m_data.m_NetworkCards.Add(card);
 	}
 

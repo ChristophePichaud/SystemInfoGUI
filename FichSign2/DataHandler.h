@@ -56,9 +56,15 @@ public:
 class CNetworkCard
 {
 public:
+	int m_Index;
 	CString m_Name;
+	CString m_AdapterType;
 	CString m_MACAddress;
 	CString m_Speed;
+	int m_NetConnectionStatus;
+	bool m_NetEnabled;
+	bool m_PhysicalAdapter;
+
 };
 
 class CRegKeyValue

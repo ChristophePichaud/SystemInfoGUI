@@ -270,9 +270,14 @@ void CDisplayHandler::Display_NetworkCard()
 	AddLine(_TEXT("-------------------"));
 	for (int c = 0; c != m_data.m_NetworkCards.GetCount(); c++)
 	{
-		AddLine(_TEXT("Network Card"), m_data.m_NetworkCards.GetAt(c).m_Name);
-		AddLine(_TEXT("Network Card"), m_data.m_NetworkCards.GetAt(c).m_MACAddress);
-		AddLine(_TEXT("Network Card"), m_data.m_NetworkCards.GetAt(c).m_Speed);
+		AddLine(_TEXT("Network Card : Index"), m_data.m_NetworkCards.GetAt(c).m_Index);
+		AddLine(_TEXT("Network Card : Name"), m_data.m_NetworkCards.GetAt(c).m_Name);
+		AddLine(_TEXT("Network Card : AdapterType"), m_data.m_NetworkCards.GetAt(c).m_AdapterType);
+		AddLine(_TEXT("Network Card : MACAddress"), m_data.m_NetworkCards.GetAt(c).m_MACAddress);
+		AddLine(_TEXT("Network Card : Speed"), m_data.m_NetworkCards.GetAt(c).m_Speed);
+		AddLine(_TEXT("Network Card : NetConnectionStatus"), m_data.m_NetworkCards.GetAt(c).m_NetConnectionStatus);
+		AddLine(_TEXT("Network Card : NetEnabled"), m_data.m_NetworkCards.GetAt(c).m_NetEnabled);
+		AddLine(_TEXT("Network Card : PhysicalAdapter"), m_data.m_NetworkCards.GetAt(c).m_PhysicalAdapter);
 	}
 	AddBlankLine();
 	AddBlankLine();
