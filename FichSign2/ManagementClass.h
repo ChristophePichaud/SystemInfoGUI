@@ -7,6 +7,7 @@ public:
 	~ManagementClass();
 
 	bool GetInstances();
+	bool CallMethodOnNetworkInterface(const CString& methodName, int index);
 	bool MoveNext();
 	CString GetStringProperty(CString propName);
 	bool GetBoolProperty(CString propName);

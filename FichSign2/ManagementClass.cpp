@@ -119,6 +119,40 @@ bool ManagementClass::GetInstances()
 	return true;
 }
 
+bool ManagementClass::CallMethodOnNetworkInterface(const CString& methodName, int index)
+{
+	HRESULT hres;
+
+	// Use the IWbemServices pointer to make requests of WMI ----
+
+	CComBSTR MethodName = (LPTSTR)(LPCTSTR)methodName; //_TEXT("Disable");
+	CComBSTR ClassName = _TEXT("Win32_NetworkAdapter");
+
+	IWbemClassObject* pClass = NULL;
+	hres = m_pSvc->GetObject(ClassName, 0, NULL, &pClass, NULL);
+
+	IWbemClassObject* pInParamsDefinition = NULL;
+	hres = pClass->GetMethod(MethodName, 0, &pInParamsDefinition, NULL);
+
+	IWbemClassObject* pClassInstance = NULL;
+	hres = pInParamsDefinition->SpawnInstance(0, &pClassInstance);
+
+	// Execute Method
+	IWbemClassObject* pOutParams = NULL;
+	CString arg;
+	arg.Format(_TEXT("Win32_NetworkAdapter.DeviceID=\"%d\""), index);
+	CComBSTR bstrArg = (LPTSTR)(LPCTSTR)arg;
+	hres = m_pSvc->ExecMethod(bstrArg, MethodName, 0,
+		NULL, NULL, &pOutParams, NULL);
+
+	if (FAILED(hres))
+	{
+		return false;
+	}
+
+	return true;
+}
+
 bool ManagementClass::MoveNext()
 {
 	ULONG uReturn = 0;
